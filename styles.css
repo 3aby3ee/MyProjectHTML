@@ -1,0 +1,394 @@
+/* --- CSS Custom Properties (Variables) สำหรับโทนสีฟ้า --- */
+:root {
+    --primary-blue: #2196F3;    /* ฟ้าหลัก */
+    --dark-blue: #1976D2;       /* น้ำเงินเข้ม */
+    --light-blue: #BBDEFB;      /* ฟ้าอ่อน */
+    --accent-blue: #03A9F4;     /* ฟ้าสดใสสำหรับเน้น */
+    --text-dark: #333;
+    --text-light: #f4f4f4;
+    --bg-light: #E0F2F7;        /* พื้นหลังฟ้าอ่อนพิเศษ */
+    --bg-dark: #1A237E;         /* พื้นหลังน้ำเงินเข้มมาก */
+    --card-bg: #FFFFFF;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Base Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-light); /* ใช้พื้นหลังสีฟ้าอ่อนพิเศษ */
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-blue);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--dark-blue);
+}
+
+h1, h2, h3 {
+    font-family: 'Prompt', sans-serif;
+    color: var(--dark-blue);
+    margin-bottom: 0.8em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+/* --- Header Section (ส่วนบนสุด) --- */
+.header {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%); /* gradient สีฟ้า */
+    color: var(--text-light);
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* ให้ Header มีความสูงพอสมควร */
+    position: relative;
+    overflow: hidden; /* ซ่อนสิ่งที่เกินออกมา */
+}
+
+/* เพิ่มองค์ประกอบตกแต่งใน Header (คล้ายๆ ตัวอย่าง) */
+.header::before, .header::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.08); /* วงกลมใสๆ */
+    border-radius: 50%;
+    filter: blur(50px);
+    z-index: 1;
+}
+.header::before {
+    width: 200px; height: 200px;
+    top: -50px; left: -50px;
+}
+.header::after {
+    width: 300px; height: 300px;
+    bottom: -80px; right: -80px;
+}
+
+
+.header-content {
+    text-align: center;
+    z-index: 2; /* ให้อยู่เหนือของตกแต่ง */
+}
+
+.profile-card {
+    background-color: var(--card-bg);
+    color: var(--text-dark);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    max-width: 400px;
+    margin: 0 auto;
+    animation: fadeInScale 0.8s ease-out; /* แอนิเมชันตอนโหลด */
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary-blue); /* ขอบรูปโปรไฟล์ */
+    margin-bottom: 20px;
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3); /* ขอบขาวรอง */
+}
+
+.profile-card h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    color: var(--dark-blue);
+}
+
+.profile-card .title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: var(--primary-blue);
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+.social-icons a {
+    font-size: 1.8em;
+    margin: 0 10px;
+    color: var(--dark-blue);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent-blue);
+    transform: translateY(-5px) scale(1.1); /* มีการยกขึ้นเล็กน้อย */
+}
+
+/* --- Main Content Sections --- */
+.main-content {
+    max-width: 1000px;
+    margin: 40px auto; /* มีระยะห่างจาก Header */
+    padding: 0 20px;
+}
+
+.section {
+    background-color: var(--card-bg);
+    padding: 40px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    animation: slideInUp 0.7s ease-out forwards; /* แอนิเมชันแต่ละ Section */
+    opacity: 0; /* ซ่อนไว้ก่อน */
+    transform: translateY(20px);
+}
+
+.section:nth-child(even) { /* สลับสีพื้นหลังเล็กน้อยสำหรับ section คู่ */
+    background-color: #F8FDFF;
+}
+
+.section-title {
+    font-size: 2.2em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--dark-blue);
+    position: relative;
+}
+
+.section-title::after { /* เส้นใต้ Section Title */
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent-blue);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 50px; /* ปุ่มโค้งมน */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+.primary-btn {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+}
+
+.primary-btn:hover {
+    background-color: var(--dark-blue);
+    box-shadow: 0 8px 20px rgba(25, 118, 210, 0.6);
+    transform: translateY(-3px);
+}
+
+.secondary-btn {
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+    border: 1px solid var(--primary-blue);
+}
+
+.secondary-btn:hover {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    transform: translateY(-3px);
+}
+
+/* --- Skills Section --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* ปรับให้พอดี */
+    gap: 20px;
+    text-align: center;
+}
+
+.skill-item {
+    background-color: var(--bg-light); /* พื้นหลังของ Skill Item */
+    padding: 20px 10px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: var(--hover-shadow);
+}
+
+.skill-item i {
+    font-size: 3em;
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+.skill-item h3 {
+    font-size: 1.2em;
+    color: var(--dark-blue);
+    margin-bottom: 0;
+}
+
+/* --- Portfolio Section --- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.portfolio-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--hover-shadow);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33, 150, 243, 0.9); /* Overlay สีฟ้าเข้มโปร่งแสง */
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.portfolio-item:hover .item-overlay {
+    opacity: 1; /* แสดง overlay เมื่อเมาส์ชี้ */
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1); /* รูปภาพขยายเล็กน้อย */
+}
+
+.item-overlay h3 {
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.item-overlay p {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    opacity: 0.9;
+}
+
+/* --- Contact Section --- */
+.contact-text {
+    text-align: center;
+    font-size: 1.1em;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--dark-blue); /* พื้นหลัง Footer สีน้ำเงินเข้ม */
+    color: var(--light-blue);
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9em;
+    margin-top: 50px;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .header {
+        padding: 30px 15px;
+        min-height: 50vh;
+    }
+
+    .profile-card {
+        padding: 20px;
+    }
+
+    .profile-card h1 {
+        font-size: 2em;
+    }
+
+    .section {
+        padding: 30px;
+    }
+
+    .section-title {
+        font-size: 1.8em;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* ให้แสดงทีละ 1 คอลัมน์สำหรับมือถือ */
+    }
+
+    .item-overlay h3 {
+        font-size: 1.2em;
+    }
+}
+
+/* --- Keyframe Animations --- */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Delay for section animations */
+/* นี่เป็น JavaScript แทนการใช้ CSS Animation Delay เพื่อความยืดหยุ่น */
+/* คุณสามารถใช้ Intersection Observer API เพื่อทริกเกอร์แอนิเมชั่นเมื่อ section ปรากฏ */
+/* สำหรับตอนนี้ เราจะถือว่าทุก section จะเลื่อนเข้ามา */
